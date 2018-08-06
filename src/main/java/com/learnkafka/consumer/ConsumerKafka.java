@@ -10,14 +10,12 @@ import java.util.Properties;
 public class ConsumerKafka {
 
     public static void main(String[] args) {
-
         Properties properties=new Properties();
         properties.put("bootstrap.servers", "178.128.153.12:9092");
         properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put("group.id","my-group-id");
         KafkaConsumer< String, String> consumer=new KafkaConsumer<String, String>(properties);
-
         ArrayList<String> topics=new ArrayList<String>();
         topics.add("test");
 

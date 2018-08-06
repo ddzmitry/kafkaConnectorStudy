@@ -1,12 +1,9 @@
 package com.learnkafka.consumer.partitioner.producer;
-
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-
 import java.util.Properties;
 
-    public class ProducerKafka {
-
+public class ProducerKafka {
         public static void main(String[] args) {
             Properties properties=new Properties();
             properties.put("bootstrap.servers", "178.128.153.12:9092");
@@ -15,8 +12,6 @@ import java.util.Properties;
 //        Put customer parition class for the kaffka topic
 //        Have to configure it
 //        properties.put("partitioner.class", "com.learnkafka.partitioner.ProducerKafkaPartitioner");
-
-
             KafkaProducer<String,String> myProducer= new KafkaProducer<String,String>(properties);
 
             try {
@@ -24,7 +19,11 @@ import java.util.Properties;
 //                Round-Robin
 //            Custom Partiton implementation
                 for(int i=101;i<150;i++){
-                    myProducer.send(new ProducerRecord<String, String>("test","message","Poop Value : " + Integer.toString(i)));
+
+                    RandomString stringToshow = new RandomString();
+//                    sending random person class
+                    testclass RandomPerson = new testclass(5,stringToshow.generateString(),stringToshow.generateString());
+                    myProducer.send(new ProducerRecord<String, String>("test",RandomPerson.getName(),RandomPerson.getJob() ));
 //                myProducer.send(new  ProducerRecord<String, String>("my-fifth-topic", "url:<local-directory-path>/file"));
                 }
             } catch (Exception e) {
