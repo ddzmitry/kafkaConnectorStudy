@@ -13,17 +13,17 @@ public class ProducerKafka {
 //        Have to configure it
 //        properties.put("partitioner.class", "com.learnkafka.partitioner.ProducerKafkaPartitioner");
             KafkaProducer<String,String> myProducer= new KafkaProducer<String,String>(properties);
-
             try {
 //                ways to pass hash key
 //                Round-Robin
 //            Custom Partiton implementation
-                for(int i=101;i<150;i++){
+                for(int i=101;i<15000;i++){
 
                     RandomString stringToshow = new RandomString();
 //                    sending random person class
+                    System.out.println(i);
                     testclass RandomPerson = new testclass(5,stringToshow.generateString(),stringToshow.generateString());
-                    myProducer.send(new ProducerRecord<String, String>("test",RandomPerson.getName(),RandomPerson.getJob() ));
+                    myProducer.send(new ProducerRecord<String, String>("test",RandomPerson.getName() + i,RandomPerson.getJob() ));
 //                myProducer.send(new  ProducerRecord<String, String>("my-fifth-topic", "url:<local-directory-path>/file"));
                 }
             } catch (Exception e) {
